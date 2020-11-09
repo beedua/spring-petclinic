@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - $(aws ecr get-login --region $AWS_REGION --no-include-email)
-      - aws ecr e-repositories --registry-id ${AWS_ACC} --repository-name spring-petclinic
+      - aws ecr describe-repositories --registry-id ${AWS_ACC} --repository-name spring-petclinic
       - docker push $REPOSITORY_URI/$spring-petclinic:latest
 artifacts:
   files:
