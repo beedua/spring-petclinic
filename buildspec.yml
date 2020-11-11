@@ -19,6 +19,9 @@ phases:
       - $(aws ecr get-login --region $AWS_REGION --no-include-email)
       - aws ecr describe-repositories --registry-id ${AWS_ACC} --repository-name spring-petclinic
       - docker push $REPOSITORY_URI/spring-petclinic:latest
+      - echo {\"repo\":\"spring-petclinic\"} > repo.json
+
 artifacts:
   files:
     - target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar
+    - repo.json
